@@ -122,9 +122,8 @@ public class MongoDBReader extends Reader {
                         JSONObject column = (JSONObject)columnItera.next();
                         Object tempCol = item.get(column.getString(KeyConstant.COLUMN_NAME));
                         if (tempCol == null) {
-                            continue;
-                        }
-                        if (tempCol instanceof Double) {
+                            record.addColumn(null);
+                        } else if (tempCol instanceof Double) {
                             record.addColumn(new DoubleColumn((Double) tempCol));
                         } else if (tempCol instanceof Boolean) {
                             record.addColumn(new BoolColumn((Boolean) tempCol));
