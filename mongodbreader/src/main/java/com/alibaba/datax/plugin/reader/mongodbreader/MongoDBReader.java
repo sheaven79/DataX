@@ -124,7 +124,7 @@ public class MongoDBReader extends Reader {
                         if (tempCol == null) {
                             String defaultValue = column.getString(KeyConstant.COLUMN_DEFAULT);
                             String columnType = column.getString(KeyConstant.COLUMN_TYPE);
-                            if (columnType.equalsIgnoreCase("String")) || columnType.equalsIgnoreCase("array")) {
+                            if (columnType.equalsIgnoreCase("String") || columnType.equalsIgnoreCase("array")) {
                                 if (defaultValue == null) {
                                     record.addColumn(new StringColumn(""));
                                 } else {
@@ -163,8 +163,7 @@ public class MongoDBReader extends Reader {
                                     record.addColumn(new LongColumn(defaultValue));
                                 }
                             }
-                        }
-                        if (tempCol instanceof Double) {
+                        } else if (tempCol instanceof Double) {
                             record.addColumn(new DoubleColumn((Double) tempCol));
                         } else if (tempCol instanceof Boolean) {
                             record.addColumn(new BoolColumn((Boolean) tempCol));
@@ -172,7 +171,7 @@ public class MongoDBReader extends Reader {
                             record.addColumn(new DateColumn((Date) tempCol));
                         } else if (tempCol instanceof Integer) {
                             record.addColumn(new LongColumn((Integer) tempCol));
-                        }else if (tempCol instanceof Long) {
+                        } else if (tempCol instanceof Long) {
                             record.addColumn(new LongColumn((Long) tempCol));
                         } else {
                             if(KeyConstant.isArrayType(column.getString(KeyConstant.COLUMN_TYPE))) {
